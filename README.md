@@ -10,6 +10,14 @@
   <img src="https://img.shields.io/badge/Role-Backend_Dev-512BD4?style=for-the-badge" alt="Role" />
 </p>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)"  srcset="https://raw.githubusercontent.com/jakeemma2012/jakeemma2012/main/dark_mode.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/jakeemma2012/jakeemma2012/main/light_mode.svg" />
+    <img alt="jakeemma2012 — uptime &amp; github stats" src="https://raw.githubusercontent.com/jakeemma2012/jakeemma2012/main/dark_mode.svg" width="100%" />
+  </picture>
+</p>
+
 ---
 
 <table>

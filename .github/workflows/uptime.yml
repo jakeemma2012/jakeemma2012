@@ -1,0 +1,37 @@
+name: Update profile SVG
+
+on:
+  schedule:
+    # 17:00 UTC = 00:00 giờ Việt Nam (UTC+7)
+    - cron: "0 17 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sinh SVG
+        env:
+          # GH_PAT (nếu đã cài secret) đếm được cả repo private.
+          # Không có thì script tự dùng GITHUB_TOKEN -> chỉ repo public.
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python gen_svg.py
+
+      - name: Commit & push nếu SVG đổi
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dark_mode.svg light_mode.svg
+          git diff --staged --quiet && echo "SVG không đổi, bỏ qua commit" && exit 0
+          git commit -m "chore: cap nhat profile SVG (uptime + github stats)"
+          git push
